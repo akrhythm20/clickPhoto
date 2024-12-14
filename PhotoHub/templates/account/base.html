@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>{% block head_title %}{% endblock %}</title>
+    {% block extra_head %}
+    {% endblock %}
+    
+    <link rel="stylesheet" href="https://unpkg.com/tailwindcss/dist/tailwind.min.css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous">
+  </head>
+
+  <body>
+    <nav class="bg-gradient-to-r from-pink-400 via-purple-400 to-blue-500 hover:drop-shadow-xl">
+      <div class="flex mx-auto p-5">
+        <a class="text-gray-800 font-bold text-lg mr-8 hover:text-indigo-500" href="/">BiCaption</a>
+        <button class="" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class=""></span>
+        </button>
+        <div class="" id="navbarSupportedContent">
+          <ul class="flex">
+            {% if user.is_authenticated %}
+             <li class="nav-item mr-6 font-semibold text-lg hover:text-indigo-500">
+              <a class="nav-link active text-white" aria-current="page" href="{% url 'account_email' %}">Change E-mail</a>
+             </li>
+             <li class="nav-item mr-6 font-semibold text-lg hover:text-indigo-500">
+              <a class="nav-link text-white" href="{% url 'account_logout' %}">Sign Out</a>
+             </li>
+            {% else %}
+             <li class="nav-item mr-6 font-semibold text-lg hover:text-indigo-500">
+              <a class="nav-link active text-white" aria-current="page" href="{% url 'account_login' %}">Sign In</a>
+             </li>
+             <li class="nav-item mr-6 font-semibold text-lg hover:text-indigo-500">
+              <a class="nav-link text-white" href="{% url 'account_signup' %}">Sign Up</a>
+             </li>
+            {% endif %}
+          </ul>
+          
+        </div>
+      </div>
+    </nav>
+  
+    {% block content %}
+    {% endblock %}
+
+
+    {% block extra_body %}
+    {% endblock %}
+  </body>
+</html>
